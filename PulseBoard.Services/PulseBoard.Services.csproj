@@ -9,6 +9,7 @@
     <Folder Include="AI/Tools/" />
     <Folder Include="Data/" />
     <Folder Include="Entities/" />
+    <Folder Include="Enum/" />
     <Folder Include="Repositories/" />
   </ItemGroup>
 
