@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\PulseBoard.Application\PulseBoard.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="AI/" />
+    <Folder Include="AI/Tools/" />
+    <Folder Include="Data/" />
+    <Folder Include="Entities/" />
+    <Folder Include="Repositories/" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

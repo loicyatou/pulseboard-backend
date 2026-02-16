@@ -1,0 +1,6 @@
+@PulseBoard.Presentation_HostAddress = http://localhost:5132
+
+GET {{PulseBoard.Presentation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
