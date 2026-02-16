@@ -1,4 +1,4 @@
-namespace PulseBoard.Services.Enum;
+namespace PulseBoard.Application.Common.Enums;
 
 public enum Stage
 {

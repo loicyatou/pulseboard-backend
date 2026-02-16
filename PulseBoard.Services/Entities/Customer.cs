@@ -1,12 +1,30 @@
-using PulseBoard.Services.Enum;
+using PulseBoard.Application.Common.Enums;
 
 namespace PulseBoard.Services.Entities;
 
 public class Customer
 {
-   public int ID {get;set;}
-   public required string Name {get;set;}
-   public Segment Segmenet {get;set;}
-   public Region Regioun {get;set;} 
-   public int ChurnRiskScore {get => ChurnRiskScore;set => ChurnRiskScore = value >= 0 &&  value < 100 ? value : throw new ArgumentException("Risk score is out of bound");}
+    public int Id { get; set; }
+
+    public required string Name { get; set; }
+
+    public Segment Segment { get; set; }
+
+    public Region Region { get; set; }
+
+    private int _churnRiskScore;
+
+    public int ChurnRiskScore
+    {
+        get => _churnRiskScore;
+        set => _churnRiskScore = value is >= 0 and <= 100
+            ? value
+            : throw new ArgumentException("Churn risk score must be between 0 and 100.");
+    }
+
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+    // Navigation properties
+    public ICollection<Order> Orders { get; set; } = new List<Order>();
+    public ICollection<Deal> Deals { get; set; } = new List<Deal>();
 }

@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs/" />
+    <Folder Include="Common/Util/" />
+    <Folder Include="DTOs/Revenue/" />
+    <Folder Include="Filters/" />
     <Folder Include="Interfaces/" />
     <Folder Include="Tooling/" />
     <Folder Include="UseCases/" />
