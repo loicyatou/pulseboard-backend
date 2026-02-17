@@ -6,13 +6,10 @@ public class Deal
 {
     public int Id { get; set; }
 
-    // FK
     public int CustomerId { get; set; }
-
-    // Navigation
     public Customer Customer { get; set; } = null!;
-
     public decimal Amount { get; set; }
+    public string Currency { get; set; } = "GBP";
 
     public Stage Stage { get; set; }
 

@@ -54,8 +54,8 @@ namespace PulseBoard.Services.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     CustomerId = table.Column<int>(type: "INTEGER", nullable: false),
-                    CustomerId1 = table.Column<int>(type: "INTEGER", nullable: false),
                     Amount = table.Column<decimal>(type: "TEXT", precision: 18, scale: 2, nullable: false),
+                    Currency = table.Column<string>(type: "TEXT", nullable: false),
                     Stage = table.Column<int>(type: "INTEGER", maxLength: 50, nullable: false),
                     ExpectedCloseDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     WinProbability = table.Column<decimal>(type: "TEXT", precision: 5, scale: 4, nullable: false),
@@ -68,12 +68,6 @@ namespace PulseBoard.Services.Migrations
                     table.ForeignKey(
                         name: "FK_Deals_Customers_CustomerId",
                         column: x => x.CustomerId,
-                        principalTable: "Customers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Deals_Customers_CustomerId1",
-                        column: x => x.CustomerId1,
                         principalTable: "Customers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -90,7 +84,6 @@ namespace PulseBoard.Services.Migrations
                     Currency = table.Column<string>(type: "TEXT", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     ProductLine = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
-                    CustomerId1 = table.Column<int>(type: "INTEGER", nullable: false),
                     Region = table.Column<int>(type: "INTEGER", nullable: false),
                     IsRecurring = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
@@ -103,23 +96,12 @@ namespace PulseBoard.Services.Migrations
                         principalTable: "Customers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Orders_Customers_CustomerId1",
-                        column: x => x.CustomerId1,
-                        principalTable: "Customers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Deals_CustomerId",
                 table: "Deals",
                 column: "CustomerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Deals_CustomerId1",
-                table: "Deals",
-                column: "CustomerId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Deals_ExpectedCloseDate",
@@ -130,11 +112,6 @@ namespace PulseBoard.Services.Migrations
                 name: "IX_Orders_CustomerId",
                 table: "Orders",
                 column: "CustomerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Orders_CustomerId1",
-                table: "Orders",
-                column: "CustomerId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_OrderDate",

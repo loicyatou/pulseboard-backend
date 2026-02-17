@@ -11,7 +11,7 @@ using PulseBoard.Services.Data;
 namespace PulseBoard.Services.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260216172207_InitialCreate")]
+    [Migration("20260217092016_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -59,10 +59,11 @@ namespace PulseBoard.Services.Migrations
                         .HasPrecision(18, 2)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("CustomerId1")
+                    b.Property<int>("CustomerId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("ExpectedCloseDate")
@@ -86,8 +87,6 @@ namespace PulseBoard.Services.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.HasIndex("CustomerId1");
-
                     b.HasIndex("ExpectedCloseDate");
 
                     b.ToTable("Deals", (string)null);
@@ -110,9 +109,6 @@ namespace PulseBoard.Services.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CustomerId1")
-                        .HasColumnType("INTEGER");
-
                     b.Property<bool>("IsRecurring")
                         .HasColumnType("INTEGER");
 
@@ -130,8 +126,6 @@ namespace PulseBoard.Services.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("CustomerId1");
 
                     b.HasIndex("OrderDate");
 
@@ -174,15 +168,9 @@ namespace PulseBoard.Services.Migrations
 
             modelBuilder.Entity("PulseBoard.Services.Entities.Deal", b =>
                 {
-                    b.HasOne("PulseBoard.Services.Entities.Customer", null)
+                    b.HasOne("PulseBoard.Services.Entities.Customer", "Customer")
                         .WithMany("Deals")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PulseBoard.Services.Entities.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -191,15 +179,9 @@ namespace PulseBoard.Services.Migrations
 
             modelBuilder.Entity("PulseBoard.Services.Entities.Order", b =>
                 {
-                    b.HasOne("PulseBoard.Services.Entities.Customer", null)
+                    b.HasOne("PulseBoard.Services.Entities.Customer", "Customer")
                         .WithMany("Orders")
                         .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("PulseBoard.Services.Entities.Customer", "Customer")
-                        .WithMany()
-                        .HasForeignKey("CustomerId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

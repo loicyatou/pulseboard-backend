@@ -65,10 +65,11 @@ public class AppDbContext : DbContext
                 .IsRequired()
                 .HasMaxLength(100);
 
-            entity.HasOne<Customer>()
-                .WithMany(c => c.Orders)
-                .HasForeignKey(o => o.CustomerId)
-                .OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(o => o.Customer)
+            .WithMany(c => c.Orders)
+            .HasForeignKey(o => o.CustomerId)
+            .OnDelete(DeleteBehavior.Cascade);
+
 
             entity.HasIndex(x => x.OrderDate);
             entity.HasIndex(x => x.CustomerId);
@@ -99,10 +100,11 @@ public class AppDbContext : DbContext
             entity.Property(x => x.RiskScore)
                 .IsRequired();
 
-            entity.HasOne<Customer>()
-                .WithMany(c => c.Deals)
-                .HasForeignKey(d => d.CustomerId)
-                .OnDelete(DeleteBehavior.Cascade);
+            entity.HasOne(d => d.Customer)
+            .WithMany(c => c.Deals)
+            .HasForeignKey(d => d.CustomerId)
+            .OnDelete(DeleteBehavior.Cascade);
+
 
             entity.HasIndex(x => x.ExpectedCloseDate);
             entity.HasIndex(x => x.CustomerId);

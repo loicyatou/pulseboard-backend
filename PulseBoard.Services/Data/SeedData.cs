@@ -40,7 +40,7 @@ public static class SeedData
             {
                 orders.Add(new Order
                 {
-                    Customer = customer, // ✅ use navigation
+                    CustomerId = customer.Id,
                     Amount = random.Next(500, 5000),
                     OrderDate = startDate.AddDays(random.Next(0, 180)),
                     ProductLine = random.Next(0, 2) == 0 ? "Core" : "Premium",
@@ -63,7 +63,7 @@ public static class SeedData
         {
             deals.Add(new Deal
             {
-                Customer = customer, // ✅ use navigation
+                CustomerId = customer.Id,
                 Amount = random.Next(10000, 100000),
                 Stage = Stage.Proposal,
                 ExpectedCloseDate = DateTime.UtcNow.AddDays(random.Next(10, 90)),
