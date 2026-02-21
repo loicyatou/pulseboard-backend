@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using PulseBoard.Application.Common.Enum;
 using PulseBoard.Application.Common.Enums;
 using PulseBoard.Application.Filters;
@@ -16,10 +17,10 @@ public sealed record RevenueBreakdownRequest(
     RevenueFilters? Filters);
 
 public sealed record RevenueTrendRequest(
-    DateTime Start,
-    DateTime End,
-    BucketType Bucket,
-    RevenueFilters? Filters);
+    [property: JsonPropertyName("start")] DateTime Start,
+    [property: JsonPropertyName("end")] DateTime End,
+    [property: JsonPropertyName("bucket")] BucketType Bucket,
+    [property: JsonPropertyName("filters")] RevenueFilters? Filters);
 
 public sealed record RevenueComparePeriodsRequest(
     DateTime PeriodAStart,

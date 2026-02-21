@@ -38,10 +38,15 @@ public static class SeedData
         {
             for (int i = 0; i < 40; i++)
             {
+                var revenue = random.Next(500, 5000);
+                var cost = revenue * (decimal)(random.NextDouble() * 0.4 + 0.4);
+                // Cost between 40%–80% of revenue
+
                 orders.Add(new Order
                 {
-                    CustomerId = customer.Id,
-                    Amount = random.Next(500, 5000),
+                    Customer = customer,
+                    Amount = revenue,
+                    Cost = Math.Round(cost, 2),
                     OrderDate = startDate.AddDays(random.Next(0, 180)),
                     ProductLine = random.Next(0, 2) == 0 ? "Core" : "Premium",
                     Region = customer.Region,

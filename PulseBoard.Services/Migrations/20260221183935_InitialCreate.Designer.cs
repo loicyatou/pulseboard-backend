@@ -11,7 +11,7 @@ using PulseBoard.Services.Data;
 namespace PulseBoard.Services.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260217092016_InitialCreate")]
+    [Migration("20260221183935_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -100,6 +100,9 @@ namespace PulseBoard.Services.Migrations
 
                     b.Property<decimal>("Amount")
                         .HasPrecision(18, 2)
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Cost")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Currency")
